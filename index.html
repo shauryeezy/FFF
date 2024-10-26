@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian States and Districts</title>
+</head>
+<body>
+    <h1>Select State and District</h1>
+    <label>State:</label>
+    <select id="state" onchange="populateDistricts()"></select>
+    
+    <label>District:</label>
+    <select id="district"></select>
+</body>
+<script>
+const data = {
+    "Andhra Pradesh": ["Anantapur", "Chittoor", "East Godavari", "Guntur", "Krishna"],
+    "Maharashtra": ["Mumbai", "Pune", "Nagpur", "Nashik", "Thane"],
+};
+window.onload = function() {
+    const stateSelect = document.getElementById("state");
+    for (let state in data) {
+        stateSelect.add(new Option(state, state));
+    }
+};
+function populateDistricts() {
+    const stateSelect = document.getElementById("state");
+    const districtSelect = document.getElementById("district");
+    const selectedState = stateSelect.value;
+    districtSelect.innerHTML = "";
+    data[selectedState]?.forEach(district => {
+        districtSelect.add(new Option(district, district));
+    });
+}
+</script>
+</html>
